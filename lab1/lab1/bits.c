@@ -180,7 +180,7 @@ int sign(int x) {
     * 结果为1
     *这里需要注意的是 !!x != x (x != 1 && x != 0) !!x 是逻辑运算，结果要么是0，要么是1.
     */ 
-  return (x >> 31) + (!!x & !(x >> 31));
+  return (x >> 31) | !!x;
 }
 /* 
  * getByte - Extract byte n from word x
@@ -191,7 +191,8 @@ int sign(int x) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  return 2;
+  int mask = 0xff;
+  return (x >> (n << 3)) & 0xff;
 }
 // Rating: 3
 /* 
@@ -203,7 +204,8 @@ int getByte(int x, int n) {
  *   Rating: 3 
  */
 int logicalShift(int x, int n) {
-  return 2;
+  int mask = ~((-1) << n) ;
+  return 
 }
 /* 
  * addOK - Determine if can compute x+y without overflow
